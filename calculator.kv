@@ -1,0 +1,100 @@
+#:kivy 1.9.0
+
+<Calc>:
+	id: calc
+	
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 20
+		spacing: 10
+
+		Label:
+			id: display
+			font_size: 70
+			text: root.current_num
+
+
+		GridLayout:
+			cols: 4
+			rows: 5
+
+			Button:
+				text: '7'
+				on_press: root.operand_callback(input_number='7')
+
+			Button:
+				text: '8'
+				on_press: root.operand_callback(input_number='8')
+
+			Button:
+				text: '9'
+				on_press: root.operand_callback(input_number='9')
+
+			Button:
+				text: '/'
+				on_press: root.operator_callback(operator_type='/')
+
+			Button:
+				text: '4'
+				on_press: root.operand_callback(input_number='4')
+
+			Button:
+				text: '5'
+				on_press: root.operand_callback(input_number='5')
+
+			Button:
+				text: '6'
+				on_press: root.operand_callback(input_number='6')
+
+			Button:
+				text: '*'
+				on_press: root.operator_callback(operator_type='*')
+
+			Button:
+				text: '1'
+				on_press: root.operand_callback(input_number='1')
+
+			Button:
+				text: '2'
+				on_press: root.operand_callback(input_number='2')
+
+			Button:
+				text: '3'
+				on_press: root.operand_callback(input_number='3')
+
+			Button:
+				text: '-'
+				on_press: root.operator_callback(operator_type='-')
+
+			Button:
+				text: '0'
+				on_press: root.operand_callback(input_number='0')
+
+			Button:
+				text: '<-'
+				on_press: root.backspace_callback()
+
+			Button:
+				text: '.'
+				on_press: root.operand_callback(input_number='.')
+
+			Button:
+				text: '+'
+				on_press: root.operator_callback(operator_type='+')
+
+		GridLayout:
+			cols: 3
+
+			Button:
+				text: 'c/ce'
+				on_press: root.clear_callback()
+
+			Button:
+				text: '+/-'
+				on_press: root.sign_change_callback()
+
+			Button:
+				text: '='
+				on_press: root.equals_callback()
+
+			
