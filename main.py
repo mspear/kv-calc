@@ -37,6 +37,8 @@ class Calc(BoxLayout):
 			self.current_num = str(self.evaluate())
 			self.previous = None
 			self.current_operator = None
+			if self.current_num[-2:] == '.0':
+				self.current_num = self.current_num[:-2]
 		self.last_pressed = '='
 
 
