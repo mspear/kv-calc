@@ -19,7 +19,7 @@ class Calc(BoxLayout):
 		if self.last_pressed in self.operator_dict.keys():
 			return
 		if len(self.current_num) == 1:
-			self.current_num = 0
+			self.current_num = '0'
 		else:
 			self.current_num = self.current_num[:-1]
 
