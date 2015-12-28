@@ -3,7 +3,6 @@ from kivy.app import App
 from kivy.properties import *
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-__version__ = 0.1
 
 class Calc(BoxLayout):
 	current_num = StringProperty('0')
