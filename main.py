@@ -75,7 +75,7 @@ class Calc(BoxLayout):
 
 		prev = float(self.previous)
 		curr = float(self.current_num)
-		return self.operator_dict[self.current_operator](prev, curr)
+		return str(self.operator_dict[self.current_operator](prev, curr))
 
 	def sign_change_callback(self):
 		if self.current_num[0] == '-':
