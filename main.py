@@ -16,6 +16,10 @@ class Calc(BoxLayout):
 								  '/': operator.truediv,
 								  '=': None})
 	def backspace_callback(self):
+		if self.last_pressed == '=':
+			# Makes the calculator behave more logically
+			self.current_num = '0'
+			return
 		if self.last_pressed in self.operator_dict.keys():
 			return
 		if len(self.current_num) == 1:
