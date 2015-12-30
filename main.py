@@ -43,6 +43,19 @@ class Calc(BoxLayout):
 			if self.current_num[-2:] == '.0':
 				self.current_num = self.current_num[:-2]
 		self.last_pressed = '='
+		
+	def error_callback(self, message):
+		self.previous = None
+		self.last_pressed = 'err'
+		self.current_num = message
+		
+	def evaluate(self):
+		if self.last_pressed == '.':
+			self.current_num = self.current_num[:-1]
+
+		prev = float(self.previous)
+		curr = float(self.current_num)
+		return str(self.operator_dict[self.current_operator](prev, curr))
 
 
 	def operand_callback(self,input_number):
@@ -54,31 +67,29 @@ class Calc(BoxLayout):
 
 
 	def operator_callback(self,operator_type):
-		if self.last_pressed == '.':
-			self.current_num = self.current_num[:-1]
+		try:
+			if self.last_pressed == 'err':
+				return
+			if self.last_pressed == '.':
+				self.current_num = self.current_num[:-1]
 
-		if self.previous == None:
-			self.previous = self.current_num
-		elif self.last_pressed in self.operator_dict.keys():
-			pass
-		else:
-			self.current_num = self.evaluate()
-			self.previous = self.current_num
+			if self.previous == None:
+				self.previous = self.current_num
+			elif self.last_pressed in self.operator_dict.keys():
+				pass
+			else:
+				self.current_num = self.evaluate()
+				self.previous = self.current_num
 
-		self.last_pressed = operator_type
-		self.current_operator = operator_type
+			self.last_pressed = operator_type
+			self.current_operator = operator_type
+		except Exception:
+			return self.error_callback(message='Divide by 0 error')
 		
 
-	def evaluate(self):
-		if self.last_pressed == '.':
-			self.current_num = self.current_num[:-1]
-
-		prev = float(self.previous)
-		curr = float(self.current_num)
-		return str(self.operator_dict[self.current_operator](prev, curr))
-
 	def sign_change_callback(self):
-		if self.current_num == '0' or self.last_pressed == '=':
+		if self.current_num == '0' or self.last_pressed == '=' or \
+									self.last_pressed == 'err':
 			return
 		if self.current_num[0] == '-':
 			self.current_num = self.current_num[1:]
@@ -91,6 +102,15 @@ class Calc(BoxLayout):
 
 			if self.last_pressed in self.operator_dict.keys():
 				self.previous = '-' + self.previous
+				
+	def sqrt_callback(self):
+		if self.current_num[0] == '-':
+			return self.error_callback(message='SQRT of negative')
+		if self.last_pressed in self.operator_dict and \
+							self.last_pressed != '=':
+			return
+		self.current_num = str(float(self.current_num)**0.5)
+		self.last_pressed = 'sqrt'
 
 
 class CalculatorApp(App):

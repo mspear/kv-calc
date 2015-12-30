@@ -83,8 +83,10 @@
 				on_press: root.operator_callback(operator_type='+')
 
 		GridLayout:
-			cols: 3
-
+			cols: 4
+			Button:
+				text: 'sqrt'
+				on_press: root.sqrt_callback()
 			Button:
 				text: 'c/ce'
 				on_press: root.clear_callback()
