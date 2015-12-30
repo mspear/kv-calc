@@ -78,6 +78,8 @@ class Calc(BoxLayout):
 		return str(self.operator_dict[self.current_operator](prev, curr))
 
 	def sign_change_callback(self):
+		if self.current_num == '0' or self.last_pressed == '=':
+			return
 		if self.current_num[0] == '-':
 			self.current_num = self.current_num[1:]
 
