@@ -111,6 +111,9 @@ class Calc(BoxLayout):
 			return
 		self.current_num = str(float(self.current_num)**0.5)
 		self.last_pressed = 'sqrt'
+		
+	def quit_callback(self):
+		CalculatorApp.get_running_app().stop()
 
 
 class CalculatorApp(App):

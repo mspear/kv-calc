@@ -83,7 +83,10 @@
 				on_press: root.operator_callback(operator_type='+')
 
 		GridLayout:
-			cols: 4
+			cols: 5
+			Button:
+				text: 'quit'
+				on_press: root.quit_callback()
 			Button:
 				text: 'sqrt'
 				on_press: root.sqrt_callback()
