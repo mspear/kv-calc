@@ -59,7 +59,7 @@ class Calc(BoxLayout):
 
 
 	def operand_callback(self,input_number):
-		if self.current_num == '0' or self.last_pressed in self.operator_dict.keys():
+		if float(self.current_num) == 0 or self.last_pressed in self.operator_dict.keys():
 			self.current_num = input_number
 		else:
 			self.current_num += input_number
@@ -98,8 +98,9 @@ class Calc(BoxLayout):
 
 		else:
 			self.current_num = '-' + self.current_num
-
-			if self.last_pressed in self.operator_dict.keys():
+			print('else')
+			if self.last_pressed in self.operator_dict.keys() and \
+											self.previous != None:
 				self.previous = '-' + self.previous
 				
 	def sqrt_callback(self):
