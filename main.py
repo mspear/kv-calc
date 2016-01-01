@@ -37,7 +37,7 @@ class Calc(BoxLayout):
 
 	def equals_callback(self):
 		if self.previous != None and self.last_pressed != '=':
-			self.current_num = str(self.evaluate())
+			self.current_num = self.evaluate()
 			self.previous = None
 			self.current_operator = None
 			if self.current_num[-2:] == '.0':
@@ -57,16 +57,26 @@ class Calc(BoxLayout):
 		curr = float(self.current_num)
 		return str(self.operator_dict[self.current_operator](prev, curr))
 
-
+	"""
 	def operand_callback(self,input_number):
-		#if input_number == '.' and float(self.current_num) == 0:
-			#self.current_num = '0.0'
-		if float(self.current_num) == 0 or self.last_pressed in self.operator_dict.keys():
+		if self.current_num == '.'
+			self.current_num = '0.0'
+		elif float(self.current_num) == 0 or self.last_pressed in self.operator_dict.keys():
 			self.current_num = input_number
 		else:
 			self.current_num += input_number
 		self.last_pressed = input_number
-
+	"""
+	def operand_callback(self, input_number):
+		if self.current_num != '0' and self.last_pressed not in self.operator_dict.keys():
+			self.current_num += input_number
+		else:
+			if input_number == '.':
+				self.current_num = '0.'
+			else:
+				self.current_num = input_number
+		self.last_pressed = input_number
+				
 
 	def operator_callback(self,operator_type):
 		try:
@@ -78,7 +88,7 @@ class Calc(BoxLayout):
 			if self.previous == None:
 				self.previous = self.current_num
 			elif self.last_pressed in self.operator_dict.keys():
-				pass
+				return
 			else:
 				self.current_num = self.evaluate()
 				self.previous = self.current_num
@@ -111,6 +121,8 @@ class Calc(BoxLayout):
 							self.last_pressed != '=':
 			return
 		self.current_num = str(float(self.current_num)**0.5)
+		if float(self.current_num) == 0:
+			self.current_num = '0'
 		self.last_pressed = 'sqrt'
 		
 	def quit_callback(self):
