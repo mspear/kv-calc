@@ -88,8 +88,7 @@ class Calc(BoxLayout):
 		
 
 	def sign_change_callback(self):
-		if self.current_num == '0' or self.last_pressed == '=' or \
-									self.last_pressed == 'err':
+		if float(self.current_num) == 0 or self.last_pressed == 'err':
 			return
 		if self.current_num[0] == '-':
 			self.current_num = self.current_num[1:]
