@@ -59,6 +59,8 @@ class Calc(BoxLayout):
 
 
 	def operand_callback(self,input_number):
+		#if input_number == '.' and float(self.current_num) == 0:
+			#self.current_num = '0.0'
 		if float(self.current_num) == 0 or self.last_pressed in self.operator_dict.keys():
 			self.current_num = input_number
 		else:
@@ -98,7 +100,6 @@ class Calc(BoxLayout):
 
 		else:
 			self.current_num = '-' + self.current_num
-			print('else')
 			if self.last_pressed in self.operator_dict.keys() and \
 											self.previous != None:
 				self.previous = '-' + self.previous
